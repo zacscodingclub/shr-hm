@@ -27,7 +27,7 @@ module Hangman
     end
 
     def over?
-      won? || @misses > 5
+      won? || misses_remaining.zero?
     end
 
     def won?
@@ -35,6 +35,7 @@ module Hangman
     end
 
     def make_guess
+      puts "You have #{misses_remaining} misses left! To quit, type 'quit' or 'exit'."
       puts "Pick a letter:"
       guess = gets.chomp.downcase
 
@@ -59,7 +60,6 @@ module Hangman
       end
 
       puts "Current Board: #{str}"
-      puts "You have #{misses_remaining} misses left! To quit, type 'quit' or 'exit'."
     end
 
     def select_word
